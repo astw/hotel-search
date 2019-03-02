@@ -24,18 +24,22 @@
           <input type="text" class="form-control" name="checkInDate" id="checkInDate" placeholder="Enter checkin date">
         </div>
         <div class="form-group">
-          <label for="checkoutDate">Checkout Date (yyyy-mm-dd)</label>
-          <input type="text" class="form-control" name="checkoutDate" id="checkoutDate" placeholder="Enter check out date">
+          <label for="checkOutDate">Checkout Date (yyyy-mm-dd)</label>
+          <input type="text" class="form-control" name="checkOutDate" id="checkOutDate" placeholder="Enter check out date">
         </div>
 
-        <button id='submit-btn' type="submit" class="btn btn-primary">Submit</button>
+        <button id='submit-btn' type="submit" class="btn btn-primary">Search</button>
       </form>
 
     </div>
     
 
-    <div id="result">
+    <div>
         Search results:
+        <hr/>
+        <div id="result">
+
+        </div>
       <hr />
     </div>
 
@@ -50,10 +54,10 @@
       var formdata = $('form').serialize()
       $.get("http://localhost:3000/api/v1/hotels?" + formdata,
         function (hotels) {
-          console.log(hotels);
-          hotels.map(i => {
-            console.log(i);
-
+          
+          $("#result").empty()
+          
+          hotels.map(i => { 
             $("#result").append("<div class='card'> <div class='card-body'> Name: " +
               i.name + "<br/>" + 
               "Address: " + i.address + "<br/>" + 

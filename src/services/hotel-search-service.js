@@ -42,19 +42,16 @@ export class HotelSearch {
     throw Error(err);
   }
 
-  async getCheapest3Hotels(options) {
-
+  async getCheapest3Hotels(options) { 
     try {
       const token = await this.getAccessToken();
 
       const params = qs.stringify({
         cityCode: options.cityCode,
         checkInDate: options.checkInDate,
-        checkOutDate: options.checkoutDate,
+        checkOutDate: options.checkOutDate,
         sort: 'PRICE'
-      });
-
-      console.log(params); 
+      }); 
 
       const config = {
         headers: {

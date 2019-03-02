@@ -35,14 +35,7 @@ export class HotelsController {
 
     if (!query.cityCode) {
       return res.sendStatus(400);
-    }
-
-    query.adults = 1;
-    query.roomQuantity = 1;
-    query.radius = 5;
-    query.bestRateOnly = true;
-    query.pageLimit = 1;
-    query.pageOffset = 0;
+    } 
  
     const hotelSearch = new HotelSearch();
     try {
