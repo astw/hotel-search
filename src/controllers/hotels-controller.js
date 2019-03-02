@@ -43,11 +43,10 @@ export class HotelsController {
     query.bestRateOnly = true;
     query.pageLimit = 1;
     query.pageOffset = 0;
-
-    let hotels = ['test'];
+ 
     const hotelSearch = new HotelSearch();
     try {
-      hotels = await hotelSearch.getCheapest3Hotels(query);
+      const hotels = await hotelSearch.getCheapest3Hotels(query);
       return res.json(hotels);
     } catch (err) {
       console.log(err);
