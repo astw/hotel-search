@@ -1,0 +1,27 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --watch --require babel-register",
+    "debug": "nodemon --exec babel-node ./src/server.js",
+    "start": "babel-node ./src/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": { 
+    "axios": "^0.18.0",
+    "es6-promise": "^4.2.5",
+    "express": "^4.16.4", 
+    "morgan": "^1.9.1",
+    "qs": "^6.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",  
+    "supertest": "^3.4.2"
+  }
+}

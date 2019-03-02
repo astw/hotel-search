@@ -1,0 +1,74 @@
+<html>
+<header>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</header>
+
+<body>
+  <div class="container">
+    <div class="col-lg-4 float-left">
+      Search Hotels:
+      <hr />
+      <form>
+        <div class="form-group">
+          <label for="cityCode">City Code (required) </label>
+          <input type="text" class="form-control" name="cityCode" id="cityCode" placeholder="Enter cityCode">
+        </div>
+        <div class="form-group">
+          <label for="checkInDate">Checkin Date (yyyy-mm-dd)</label>
+          <input type="text" class="form-control" name="checkInDate" id="checkInDate" placeholder="Enter checkin date">
+        </div>
+        <div class="form-group">
+          <label for="checkoutDate">Checkout Date (yyyy-mm-dd)</label>
+          <input type="text" class="form-control" name="checkoutDate" id="checkoutDate" placeholder="Enter check out date">
+        </div>
+
+        <button id='submit-btn' type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+    </div>
+    
+
+    <div id="result">
+        Search results:
+      <hr />
+    </div>
+
+  </div>
+</body>
+
+<script>
+  $(document).ready(function () {
+    $("#submit-btn").click(function (e) {
+      e.preventDefault();
+
+      var formdata = $('form').serialize()
+      $.get("http://localhost:3000/api/v1/hotels?" + formdata,
+        function (hotels) {
+          console.log(hotels);
+          hotels.map(i => {
+            console.log(i);
+
+            $("#result").append("<div class='card'> <div class='card-body'> Name: " +
+              i.name + "<br/>" + 
+              "Address: " + i.address + "<br/>" + 
+              "price:" + i.price +' ' + i.currency + "<br/>" + 
+              "Phone:" + i.phone + 
+              "</div> </div>")
+          })
+          console.log(hotels);
+        }
+      );
+
+      return false;
+    })
+  })
+
+</script>
+
+</html>
